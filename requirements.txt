@@ -1,0 +1,6 @@
+pyyaml
+requests
+selenium
+python-dateutil
+selenium-wire
+browsercookie
