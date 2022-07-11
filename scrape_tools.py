@@ -62,7 +62,7 @@ def login_to_newrelic(email, username, password, staging=False):
     try:
         print('waiting for login...')
         # Wait until user is logged in (we use the Projects text to be indicative of a successful login)
-        WebDriverWait(driver, 100).until(EC.presence_of_element_located((By.PARTIAL_LINK_TEXT, "Explorer")))
+        WebDriverWait(driver, 100).until(EC.presence_of_element_located((By.PARTIAL_LINK_TEXT, "APM")))
     except:
         print_error('Did not login in time. Please restart script.')
         raise Exception('Did not login in time. Script exiting.')

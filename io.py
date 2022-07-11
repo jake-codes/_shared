@@ -73,3 +73,38 @@ def read_json_file(filename):
     except Exception as e:
         print_error('Error reading json file: {}\n{}.'.format(filename,e))
         raise e
+
+def read_csv_file(filename):
+    try:
+        rows = []
+        with open(filename, newline='') as csvfile:
+            reader = csv.DictReader(csvfile)
+            for row in reader:
+                rows.append(dict(row))
+            return rows
+    except Exception as e:
+        print_error('Error reading json file: {}\n{}.'.format(filename,e))
+        raise e
+
+def write_csv_file(data, output_filename, fieldnames=[]):
+    try:
+        with open(output_filename, 'w') as f:
+            writer = None
+            if fieldnames and len(fieldnames):
+                writer = csv.DictWriter(f, fieldnames=fieldnames)
+                writer.writeheader()
+            else:
+                writer = csv.writer(f)
+            writer.writerows(data)
+    except Exception as e:
+        print_error('Error writing csv file: {}\n{}.'.format(output_filename,e))
+        raise e
+
+def write_text_file(data, filename):
+    try:
+        with open(filename,'w') as f:
+            f.write(data)
+            f.close()
+    except Exception as e:
+        print_error('Error writing text file: {}\n{}.'.format(filename,e))
+        raise e
